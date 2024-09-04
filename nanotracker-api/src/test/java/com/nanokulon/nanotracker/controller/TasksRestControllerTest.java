@@ -35,6 +35,7 @@ class TasksRestControllerTest {
     TasksRestController controller;
 
     @Test
+    @DisplayName("findUser вернёт список задач пользователя")
     void findUserTasks_ReturnsUserTasks() {
         //given
         var response = List.of(new TaskResponse(1, "Задача 1", "Описание задачи 1", false),
@@ -91,6 +92,7 @@ class TasksRestControllerTest {
     }
 
     @Test
+    @DisplayName("createTask преобразует исключение к BindException и выбросит его")
     void createTask_RequestIsInvalid_ReturnsBadRequest() {
         // given
         var taskCreateRequest = new TaskCreateRequest(" ", "Описание");
@@ -110,6 +112,7 @@ class TasksRestControllerTest {
     }
 
     @Test
+    @DisplayName("createTask выбросит BindException")
     void createTask_RequestIsInvalidAndBindResultIsBindException_ReturnsBadRequest() {
         // given
         var taskCreateRequest = new TaskCreateRequest(" ", "Описание");
