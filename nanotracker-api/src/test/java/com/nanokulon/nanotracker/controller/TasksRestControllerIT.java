@@ -136,4 +136,22 @@ class TasksRestControllerIT {
                                 ]}""")
                 );
     }
+
+    @Test
+    @DisplayName("createTask вернёт статус 401")
+    void createTask_UserIsNotAuthenticated_ReturnsUnauthorized() throws Exception {
+        // given
+        var requestBuilder = MockMvcRequestBuilders.post("/api/v1/tasks/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {"title": "", "details": "New Task Details"}""");
+
+        // when
+        mockMvc.perform(requestBuilder)
+                // then
+                .andDo(print())
+                .andExpectAll(
+                        status().isUnauthorized()
+                );
+    }
 }
