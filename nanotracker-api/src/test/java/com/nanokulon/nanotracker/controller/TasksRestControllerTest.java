@@ -108,7 +108,7 @@ class TasksRestControllerTest {
         // then
         assertEquals(List.of(new FieldError("taskCreateRequest", "title",
                 "error")), exception.getAllErrors());
-        verifyNoMoreInteractions(this.taskService);
+        verifyNoInteractions(this.taskService);
     }
 
     @Test
@@ -128,6 +128,6 @@ class TasksRestControllerTest {
         // then
         assertEquals(List.of(new FieldError("taskCreateRequest", "title",
                 "error")), exception.getAllErrors());
-        verifyNoMoreInteractions(this.taskService);
+        verifyNoInteractions(this.taskService);
     }
 }
