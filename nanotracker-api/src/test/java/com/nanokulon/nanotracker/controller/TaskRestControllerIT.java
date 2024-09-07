@@ -34,6 +34,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("findTask вернёт задачу")
     void findTask_TaskExists_ReturnsTask() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
@@ -59,6 +60,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("findTask вернёт NotFound")
     void findTask_TaskDoesNotExist_ReturnsNotFound() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
@@ -83,6 +85,7 @@ class TaskRestControllerIT {
     }
 
     @Test
+    @DisplayName("findTask вернёт Unauthorized")
     void findTask_UserIsNotAuthenticated_ReturnsUnauthorized() throws Exception {
         // given
         var requestBuilder = MockMvcRequestBuilders.get("/api/v1/tasks/1");
@@ -99,6 +102,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("findTask вернёт Forbidden")
     void findTask_TaskDoesNotBelongToUser_ReturnsForbidden() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(2, "testuser1@example.com",
@@ -125,6 +129,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("updateTask вернёт NoContent")
     void updateTask_RequestIsValid_ReturnsNoContent() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
@@ -151,6 +156,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("updateTask вернёт BadRequest")
     void updateTask_RequestIsInvalid_ReturnsBadRequest() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
@@ -184,6 +190,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("updateTask вернёт NotFound")
     void updateTask_TaskDoesNotExist_ReturnsNotFound() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
@@ -213,6 +220,7 @@ class TaskRestControllerIT {
     }
 
     @Test
+    @DisplayName("updateTask вернёт Unauthorized")
     void updateTask_UserIsNotAuthenticated_ReturnsUnauthorized() throws Exception {
         // given
         var requestBuilder = MockMvcRequestBuilders.patch("/api/v1/tasks/5")
@@ -234,6 +242,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("updateTask вернёт Forbidden")
     void updateTask_TaskDoesNotBelongToUser_ReturnsForbidden() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(2, "testuser1@example.com",
@@ -265,6 +274,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("deleteTask вернёт NoContent")
     void deleteTask_TaskExists_ReturnsNoContent() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
@@ -286,6 +296,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("deleteTask вернёт NotFound")
     void deleteTask_TaskDoesNotExist_ReturnsNotFound() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
@@ -310,6 +321,7 @@ class TaskRestControllerIT {
     }
 
     @Test
+    @DisplayName("deleteTask вернёт Unauthorized")
     void deleteTask_UserIsNotAuthenticated_ReturnsUnauthorized() throws Exception {
         // given
         var requestBuilder = MockMvcRequestBuilders.delete("/api/v1/tasks/1");
@@ -326,6 +338,7 @@ class TaskRestControllerIT {
     @Test
     @Sql("/sql/user.sql")
     @Sql("/sql/task.sql")
+    @DisplayName("deleteTask вернёт Forbidden")
     void deleteTask_TaskDoesNotBelongToUser_ReturnsForbidden() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(2, "testuser1@example.com",

@@ -126,6 +126,7 @@ class TaskRestControllerTest {
     }
 
     @Test
+    @DisplayName("deleteTask вернёт NoContent")
     void deleteTask_ReturnsNoContent() {
         // given
         doReturn(1)
