@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 public class AuthenticationRequest {
-    @NotBlank
+    @NotBlank(message = "{users.auth.errors.username_is_null}")
     private String username;
-    @NotBlank
+    @NotBlank(message = "{users.auth.errors.password_is_null}")
     private String password;
 }

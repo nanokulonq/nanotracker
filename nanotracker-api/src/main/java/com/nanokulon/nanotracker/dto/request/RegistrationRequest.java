@@ -10,10 +10,10 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class RegistrationRequest {
-    @NotBlank
+    @NotBlank(message = "{users.register.errors.email_is_null}")
     @Email(message = "{users.register.errors.email_is_invalid}")
     private String email;
-    @NotBlank
+    @NotBlank(message = "{users.register.errors.username_is_null}")
     private String username;
     @Size(min = 8, message = "{users.register.errors.password_size_is_invalid}")
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*\\d).+$",
