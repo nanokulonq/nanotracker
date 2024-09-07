@@ -89,7 +89,7 @@ class TaskRestControllerTest {
 
     @Test
     @DisplayName("updateTask преобразует исключение к BindException и выбросит его")
-    void updateTask_RequestIsInvalid_ReturnsNoContent() {
+    void updateTask_RequestIsInvalid_ThrowsBindException() {
         // given
         var taskUpdateRequest = new TaskUpdateRequest("", "Описание", true);
         var bindingResult = new MapBindingResult(Map.of(), "taskUpdateRequest");
@@ -108,7 +108,7 @@ class TaskRestControllerTest {
 
     @Test
     @DisplayName("updateTask выбросит BindException")
-    void updateTask_RequestIsInvalidAndBindResultIsBindException_ReturnsNoContent() {
+    void updateTask_RequestIsInvalidAndBindResultIsBindException_ThrowsBindException() {
         // given
         var taskUpdateRequest = new TaskUpdateRequest("", "Описание", true);
         var bindingResult = new BindException(new MapBindingResult(Map.of(), "taskUpdateRequest"));

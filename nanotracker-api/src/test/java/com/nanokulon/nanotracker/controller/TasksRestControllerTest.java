@@ -93,7 +93,7 @@ class TasksRestControllerTest {
 
     @Test
     @DisplayName("createTask преобразует исключение к BindException и выбросит его")
-    void createTask_RequestIsInvalid_ReturnsBadRequest() {
+    void createTask_RequestIsInvalid_ThrowsBindException() {
         // given
         var taskCreateRequest = new TaskCreateRequest(" ", "Описание");
         var bindingResult = new MapBindingResult(Map.of(), "taskCreateRequest");
@@ -113,7 +113,7 @@ class TasksRestControllerTest {
 
     @Test
     @DisplayName("createTask выбросит BindException")
-    void createTask_RequestIsInvalidAndBindResultIsBindException_ReturnsBadRequest() {
+    void createTask_RequestIsInvalidAndBindResultIsBindException_ThrowsBindException() {
         // given
         var taskCreateRequest = new TaskCreateRequest(" ", "Описание");
         var bindingResult = new BindException(new MapBindingResult(Map.of(), "taskCreateRequest"));
