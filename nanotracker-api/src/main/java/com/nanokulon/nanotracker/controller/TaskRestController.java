@@ -27,7 +27,7 @@ public class TaskRestController {
     private final MessageSource messageSource;
 
     @GetMapping
-    public ResponseEntity<TaskResponse> getTask(@PathVariable int taskId,
+    public ResponseEntity<TaskResponse> findTask(@PathVariable int taskId,
                                                 @AuthenticationPrincipal TrackerUserDetails userDetails) {
         return ResponseEntity.ok(
                 this.taskService.findTask(taskId, userDetails.getId()));

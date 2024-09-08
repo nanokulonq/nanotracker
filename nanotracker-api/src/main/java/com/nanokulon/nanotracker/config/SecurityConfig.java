@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("api/v1/tasks").authenticated()
                         .requestMatchers("api/v1/user").authenticated()
+                        .requestMatchers("api/v1/tasks/**").authenticated()
                         .requestMatchers("api/v1/auth/**").not().authenticated()
                         .anyRequest().permitAll())
                 .sessionManagement(session -> session

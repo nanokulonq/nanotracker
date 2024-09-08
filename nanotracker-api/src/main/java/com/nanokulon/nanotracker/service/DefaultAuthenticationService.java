@@ -29,10 +29,10 @@ public class DefaultAuthenticationService implements AuthenticationService {
     @Transactional
     public void register(RegistrationRequest registrationRequest) {
         if (this.isExistsByUsername(registrationRequest.getUsername())) {
-            throw new UserAlreadyExistsException("Username already exists");
+            throw new UserAlreadyExistsException("users.register.errors.username_already_exists");
         }
         if (this.isExistsByEmail(registrationRequest.getEmail())) {
-            throw new UserAlreadyExistsException("Email already exists");
+            throw new UserAlreadyExistsException("users.register.errors.email_already_exists");
         }
         this.trackerUserRepository.save(TrackerUser.builder()
                 .email(registrationRequest.getEmail())

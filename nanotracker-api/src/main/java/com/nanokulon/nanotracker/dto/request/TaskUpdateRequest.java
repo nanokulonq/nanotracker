@@ -2,9 +2,11 @@ package com.nanokulon.nanotracker.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class TaskUpdateRequest {
     @NotBlank(message = "{task.update.errors.title_is_null}")
     @Size(min = 3, max = 100, message = "{task.update.errors.title_size_is_invalid}")
