@@ -1,0 +1,9 @@
+jwt:
+  secret: 82cb78fbdb725dbef6fb6b64a94727ec9dc78c3e153c91b5aa6cd35b58f0be9e
+  lifetime: 10m
+
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:16:///tracker?TC_DAEMON=true
+    username: user
+    password: user

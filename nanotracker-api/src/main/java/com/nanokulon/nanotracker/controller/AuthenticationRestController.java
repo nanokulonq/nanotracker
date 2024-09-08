@@ -30,8 +30,9 @@ public class AuthenticationRestController {
     private final MessageSource messageSource;
 
     @PostMapping("/register")
-    public ResponseEntity<ProblemDetail> register(@Valid @RequestBody RegistrationRequest registrationRequest,
-                                                  BindingResult bindingResult, Locale locale) throws BindException {
+    public ResponseEntity<ProblemDetail> register(
+            @Valid @RequestBody RegistrationRequest registrationRequest,
+            BindingResult bindingResult, Locale locale) throws BindException {
         if (bindingResult.hasErrors()) {
             if (bindingResult instanceof BindException exception) {
                 throw exception;
@@ -55,16 +56,25 @@ public class AuthenticationRestController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(
-            @RequestBody @Valid AuthenticationRequest authenticationRequest, Locale locale) {
-        try {
-            AuthenticationResponse authenticationResponse = this.authenticationService
-                    .authenticate(authenticationRequest);
-            return ResponseEntity.ok(authenticationResponse);
-        } catch (BadCredentialsException exception) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED,
-                            this.messageSource.getMessage(exception.getMessage(), new Object[0],
-                                    exception.getMessage(), locale)));
+            @RequestBody @Valid AuthenticationRequest authenticationRequest,
+            BindingResult bindingResult, Locale locale) throws BindException {
+        if (bindingResult.hasErrors()) {
+            if (bindingResult instanceof BindException exception) {
+                throw exception;
+            } else {
+                throw new BindException(bindingResult);
+            }
+        } else {
+            try {
+                AuthenticationResponse authenticationResponse = this.authenticationService
+                        .authenticate(authenticationRequest);
+                return ResponseEntity.ok(authenticationResponse);
+            } catch (BadCredentialsException exception) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED,
+                                this.messageSource.getMessage(exception.getMessage(), new Object[0],
+                                        exception.getMessage(), locale)));
+            }
         }
     }
 }
