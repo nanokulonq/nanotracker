@@ -38,7 +38,7 @@ class TaskRestControllerIT {
     void findTask_TaskExists_ReturnsTask() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.get("/api/v1/tasks/1")
@@ -64,7 +64,7 @@ class TaskRestControllerIT {
     void findTask_TaskDoesNotExist_ReturnsNotFound() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.get("/api/v1/tasks/5")
@@ -106,7 +106,7 @@ class TaskRestControllerIT {
     void findTask_TaskDoesNotBelongToUser_ReturnsForbidden() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(2, "testuser1@example.com",
-                "testuser1", "testpassword", Collections.emptyList());
+                "testuser1", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.get("/api/v1/tasks/1")
@@ -133,7 +133,7 @@ class TaskRestControllerIT {
     void updateTask_RequestIsValid_ReturnsNoContent() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.patch("/api/v1/tasks/1")
@@ -160,7 +160,7 @@ class TaskRestControllerIT {
     void updateTask_RequestIsInvalid_ReturnsBadRequest() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.patch("/api/v1/tasks/1")
@@ -194,7 +194,7 @@ class TaskRestControllerIT {
     void updateTask_TaskDoesNotExist_ReturnsNotFound() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.patch("/api/v1/tasks/5")
@@ -246,7 +246,7 @@ class TaskRestControllerIT {
     void updateTask_TaskDoesNotBelongToUser_ReturnsForbidden() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(2, "testuser1@example.com",
-                "testuser1", "testpassword", Collections.emptyList());
+                "testuser1", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.patch("/api/v1/tasks/1")
@@ -278,7 +278,7 @@ class TaskRestControllerIT {
     void deleteTask_TaskExists_ReturnsNoContent() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.delete("/api/v1/tasks/1")
@@ -300,7 +300,7 @@ class TaskRestControllerIT {
     void deleteTask_TaskDoesNotExist_ReturnsNotFound() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.delete("/api/v1/tasks/5")
@@ -342,7 +342,7 @@ class TaskRestControllerIT {
     void deleteTask_TaskDoesNotBelongToUser_ReturnsForbidden() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(2, "testuser1@example.com",
-                "testuser1", "testpassword", Collections.emptyList());
+                "testuser1", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.delete("/api/v1/tasks/1")

@@ -38,7 +38,7 @@ class TasksRestControllerIT {
     void findUserTasks_ReturnsUserTasks() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.get("/api/v1/tasks")
@@ -81,7 +81,7 @@ class TasksRestControllerIT {
     void createTask_RequestIsValid_ReturnsCreatedTask() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.post("/api/v1/tasks/create")
@@ -112,7 +112,7 @@ class TasksRestControllerIT {
     void createTask_RequestIsInvalid_ReturnsBadRequest() throws Exception {
         // given
         UserDetails userDetails = new TrackerUserDetails(1, "testuser@example.com",
-                "testuser", "testpassword", Collections.emptyList());
+                "testuser", "1Password", Collections.emptyList());
         String token = jwtService.generateToken(userDetails);
 
         var requestBuilder = MockMvcRequestBuilders.post("/api/v1/tasks/create")
