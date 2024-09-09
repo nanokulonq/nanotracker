@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>nanotracker-api</module>
+        <module>nanotracker-scheduler</module>
     </modules>
 
     <properties>
