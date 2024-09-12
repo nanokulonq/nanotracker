@@ -1,8 +1,8 @@
 package com.nanokulon.scheduler.service;
 
-import com.nanokulon.scheduler.dto.ReportResponse;
+import com.nanokulon.scheduler.dto.MailDto;
 
 public interface MessagingService {
 
-    void convertAndSend(ReportResponse message);
+    void convertAndSend(MailDto message);
 }
