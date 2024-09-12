@@ -1,4 +1,4 @@
-package com.nanokulon.nanotracker.entity;
+package com.nanokulon.scheduler.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
