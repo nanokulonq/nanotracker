@@ -17,7 +17,7 @@ public class SchedulerService {
     private final TrackerUserRepository trackerUserRepository;
     private final KafkaMessagingService kafkaMessagingService;
 
-    @Scheduled(cron = "0 0 * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     @Transactional(readOnly = true)
     public void processAndSendDailyUserReports() {
         List<TrackerUser> users = trackerUserRepository.findUsersWithTasksCompletedToday();
