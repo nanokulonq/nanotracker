@@ -2,7 +2,7 @@ package com.nanokulon.scheduler.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nanokulon.scheduler.dto.ReportResponse;
+import com.nanokulon.scheduler.dto.MailDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ public class KafkaMessagingService implements MessagingService {
     private final ObjectMapper objectMapper;
 
     @Override
-    public void convertAndSend(ReportResponse message) {
+    public void convertAndSend(MailDto message) {
         try {
             String json = objectMapper.writeValueAsString(message);
             kafkaTemplate.sendDefault(json);

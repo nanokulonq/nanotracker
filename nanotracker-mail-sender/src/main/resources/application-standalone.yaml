@@ -1,0 +1,14 @@
+mail:
+  sender: tracker@noreply.com
+spring:
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+  mail:
+    protocol: 
+    host:
+    port:
+    username:
+    password:
+server:
+  port: 8082
