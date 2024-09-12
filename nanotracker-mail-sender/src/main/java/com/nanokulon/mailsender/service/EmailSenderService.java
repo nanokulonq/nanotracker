@@ -1,5 +1,6 @@
 package com.nanokulon.mailsender.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nanokulon.mailsender.dto.MailDto;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,9 @@ public class EmailSenderService {
 
     public void convertAndSend(String message) {
         try {
-            MailDto mailDto = this.objectMapper.convertValue(message, MailDto.class);
+            MailDto mailDto = this.objectMapper.readValue(message, MailDto.class);
             this.sendEmail(mailDto.getEmail(), mailDto.getSubject(), mailDto.getBody());
-        } catch (IllegalArgumentException exception) {
+        } catch (JsonProcessingException exception) {
             logger.error(exception.getMessage());
         }
     }
