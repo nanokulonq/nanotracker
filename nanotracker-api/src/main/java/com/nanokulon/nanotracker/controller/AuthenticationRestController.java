@@ -1,10 +1,12 @@
 package com.nanokulon.nanotracker.controller;
 
+import com.nanokulon.nanotracker.annotation.ApiDocumentationAnnotations;
 import com.nanokulon.nanotracker.dto.request.AuthenticationRequest;
 import com.nanokulon.nanotracker.dto.request.RegistrationRequest;
 import com.nanokulon.nanotracker.dto.response.AuthenticationResponse;
 import com.nanokulon.nanotracker.exception.UserAlreadyExistsException;
 import com.nanokulon.nanotracker.service.AuthenticationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Locale;
 
+@Tag(name = "Регистрация и аутентификация", description = "Точка входа для регистрации и аутентификации")
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -29,6 +32,7 @@ public class AuthenticationRestController {
     private final AuthenticationService authenticationService;
     private final MessageSource messageSource;
 
+    @ApiDocumentationAnnotations.OperationRegister
     @PostMapping("/register")
     public ResponseEntity<ProblemDetail> register(
             @Valid @RequestBody RegistrationRequest registrationRequest,
@@ -54,6 +58,7 @@ public class AuthenticationRestController {
         }
     }
 
+    @ApiDocumentationAnnotations.OperationAuthenticate
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(
             @RequestBody @Valid AuthenticationRequest authenticationRequest,
