@@ -12,6 +12,7 @@
     <modules>
         <module>nanotracker-api</module>
         <module>nanotracker-scheduler</module>
+        <module>nanotracker-mail-sender</module>
     </modules>
 
     <properties>

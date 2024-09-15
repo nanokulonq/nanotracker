@@ -1,6 +1,6 @@
 package com.nanokulon.scheduler.util;
 
-import com.nanokulon.scheduler.dto.ReportResponse;
+import com.nanokulon.scheduler.dto.MailDto;
 import com.nanokulon.scheduler.entity.Task;
 import com.nanokulon.scheduler.entity.TrackerUser;
 import lombok.experimental.UtilityClass;
@@ -18,8 +18,8 @@ public class ReportResponseFactory {
     private static final String REPORT_TITLE_MESSAGE =
             "%s! Посмотрите отчёт о проделанной работе.";
 
-    public ReportResponse create(TrackerUser user) {
-        return new ReportResponse(
+    public MailDto create(TrackerUser user) {
+        return new MailDto(
                 user.getEmail(),
                 createReportTitle(user.getUsername()),
                 createReportBody(user)

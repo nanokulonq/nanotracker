@@ -5,11 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ReportResponse {
-
+public class MailDto {
     private String email;
-
-    private String title;
-
+    private String subject;
     private String body;
 }

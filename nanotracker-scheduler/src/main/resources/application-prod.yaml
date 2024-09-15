@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://users-db:5432/users
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  kafka:
+    bootstrap-servers:
+      - kafka:9092
+    template:
+      default-topic: report-topic
