@@ -1,0 +1,77 @@
+name: nanotracker
+services:
+  nanotracker-api:
+    build:
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: nanotracker-api/target/nanotracker-api-1.0.0-exec.jar
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      JWT_SECRET: 82cb78fbdb725dbef6fb6b64a94727ec9dc78c3e153c91b5aa6cd35b58f0be9e
+      JWT_LIFETIME: 10m
+      DB_USERNAME: user
+      DB_PASSWORD: user
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+  nanotracker-scheduler:
+    build:
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: nanotracker-scheduler/target/nanotracker-scheduler-1.0.0-exec.jar
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_USERNAME: user
+      DB_PASSWORD: user
+    ports:
+      - 8081:8081
+    depends_on:
+      - db
+      - kafka
+
+  nanotracker-mail-sender:
+    build:
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: nanotracker-mail-sender/target/nanotracker-mail-sender-1.0.0-exec.jar
+    env_file: ./.env
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      MAIL_PROTOCOL: ${MAIL_PROTOCOL}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+    ports:
+      - 8082:8082
+    depends_on:
+      - kafka
+
+  db:
+    image: postgres:16
+    container_name: users-db
+    environment:
+      - POSTGRES_DB=users
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=user
+    ports:
+      - 5433:5432
+    volumes:
+      - db_storage:/var/lib/postgresql/data
+
+  kafka:
+    image: apache/kafka:3.8.0
+    container_name: kafka
+    ports:
+      - 9092:9092
+    volumes:
+      - kafka_data:/apache/kafka
+      - ./kafka-init.sh:/docker-entrypoint-initdb.d/kafka-init.sh
+      - ./kafka-setup.sh:/docker-entrypoint-initdb.d/kafka-setup.sh
+    command: sh -c "((sleep 15 && /docker-entrypoint-initdb.d/kafka-setup.sh)&) && /docker-entrypoint-initdb.d/kafka-init.sh"
+
+volumes:
+  db_storage:
+  kafka_data:
